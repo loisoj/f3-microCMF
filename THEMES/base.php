@@ -18,12 +18,9 @@
     <body>
 
       <nav>
-   <div class="nav-wrapper">
-     <a href="#" class="brand-logo">We::Dev</a>
-     <ul id="nav-mobile" class="right hide-on-med-and-down">
-       <li><a href="sass.html">Sass</a></li>
-       <li><a href="badges.html">Components</a></li>
-       <li><a href="collapsible.html">JavaScript</a></li>
+   <div class="nav-wrapper grey darken-4">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+    {{@ PAGE_NAVIGATION_UL_LI @}}
      </ul>
    </div>
  </nav>
@@ -31,7 +28,7 @@
 		<div id="content" class="container">
 
       <div id="head">
-  			<h1>Base</h1>
+  			<h1>{{@ PAGE_NAME @}}</h1>
   		</div>
 
 			{{@ PAGE_CONTENT_HTML @}}
