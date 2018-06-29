@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Disallow: /CONSTRUCTR-CMS
+Disallow: /CONSTRUCTR-CMS-SETUP
+Disallow: /CONSTRUCTR-UPDATER
+Disallow: /CONSTRUCTR-POSTMASTER
+Disallow: /THEMES
+Disallow: /tmp
+Disallow: /UPLOADS
+Disallow: /vendor
+
+User-agent: Googlebot
+Disallow: /*.gif$
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+Disallow: /*.pdf$
+Disallow: /*.png$
