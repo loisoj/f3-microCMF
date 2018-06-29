@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ @LANG163 }}</title>
+<link rel="stylesheet" href="{{ @CONSTRUCTR_BASE_URL}}/protected/assets/css/constructr_css_merged.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<include href="{{ @NAVIGATION }}" />
+    <div class="row">
+        <div class="col s12">
+            <check if="{{ @USER_COUNTR != 0 }}">
+                <true>
+                    <p><strong>{{ @USER_COUNTR }} {{ @LANG164 }}</strong>&#160;|&#160;<a href="{{ @CONSTRUCTR_BASE_URL}}/constructr/usermanagement/new" class="waves-effect waves-light">{{ @LANG165 }} +</a></p>
+                    <check if="{{ @EDIT }} == 'success'">
+						<div class="card-panel green darken-3 white-text">{{ @LANG166 }}</div>
+                    </check>
+                    <check if="{{ @EDIT }} == 'no-success'">
+						<div class="card-panel red darken-3 white-text">{{ @LANG167 }}</div>
+                    </check>
+                    <check if="{{ @NEW }} == 'success'">
+						<div class="card-panel green darken-3 white-text">{{ @LANG168 }}</div>
+                    </check>
+                    <check if="{{ @NEW }} == 'no-success'">
+						<div class="card-panel red darken-3 white-text">{{ @LANG169 }}</div>
+                    </check>
+                    <check if="{{ @DELETE }} == 'success'">
+						<div class="card-panel green darken-3 white-text">{{ @LANG170 }}</div>
+                    </check>
+                    <check if="{{ @DELETE }} == 'no-success'">
+						<div class="card-panel red darken-3 white-text">{{ @LANG171 }}</div>
+                    </check>
+                    <table class="bordered hoverable" onmouseout="javascript:$('.tooltipped').tooltip('remove');">
+                        <thead>
+                            <tr>
+                            <th data-field="Benutzername">{{ @LANG172 }}</th>
+                            <th data-field="eMail">{{ @LANG173 }}</th>
+                            <th data-field="Aktionen" class="center-align" style="width:150px">{{ @LANG174 }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <repeat group="{{ @USER }}" value="{{ @USER }}">
+                            <tr>
+                                <td class="tooltipped users" data-position="right" data-delay="25" data-tooltip="{{ @LANG175 }}''ID {{ @USER.constructr_user_id }}''{{ @LANG176 }}" id="user_id_@@@{{ @USER.constructr_user_id }}">
+                                    <small>{{ html_entity_decode(@USER.constructr_user_username) }}</small>
+                                </td>
+                                <td><small><a class="tooltipped" data-position="top" data-delay="25" data-tooltip="{{ @LANG177 }}" href="mailto:{{ @USER.constructr_user_email }}">{{ @USER.constructr_user_email }}</a></small></td>
+                                <td class="center-align">
+                                	<a href="{{ @CONSTRUCTR_BASE_URL}}/constructr/usermanagement/edit/{{ @USER.constructr_user_id }}" data-position="left" data-delay="25" data-tooltip="{{ @LANG178 }}''{{ html_entity_decode(@USER.constructr_user_username) }}''{{ @LANG179 }}" class="tooltipped"><i class="material-icons">mode_edit</i></a>
+                                	&#160;
+                                	<a href="{{ @CONSTRUCTR_BASE_URL}}/constructr/usermanagement/edit-rights/{{ @USER.constructr_user_id }}" data-position="left" data-delay="25" data-tooltip="{{ @LANG180 }}''{{ html_entity_decode(@USER.constructr_user_username) }}''{{ @LANG181 }}" class="tooltipped"><i class="material-icons">security</i></a>
+                                	&#160;
+									<check if="{{ @USER.constructr_user_active }} == 1">
+										<true>
+											<a href="{{ @CONSTRUCTR_BASE_URL}}/constructr/usermanagement/deactivate/{{ @USER.constructr_user_id }}" data-position="left" data-delay="25" data-tooltip="{{ @LANG182 }}''{{ html_entity_decode(@USER.constructr_user_username) }}''{{ @LANG183 }}" class="tooltipped"><i class="material-icons">visibility</i></a>
+										</true>
+										<false>
+		                                	<a href="{{ @CONSTRUCTR_BASE_URL}}/constructr/usermanagement/activate/{{ @USER.constructr_user_id }}" data-position="left" data-delay="25" data-tooltip="{{ @LANG184 }}''{{ html_entity_decode(@USER.constructr_user_username) }}''{{ @LANG185 }}" class="tooltipped"><i class="material-icons">visibility_off</i></a>
+										</false>
+									</check>
+                                	&#160;
+                                	<a href="{{ @CONSTRUCTR_BASE_URL}}/constructr/usermanagement/delete/{{ @USER.constructr_user_id }}" data-position="left" data-delay="25" data-tooltip="{{ @LANG186 }}''{{ html_entity_decode(@USER.constructr_user_username) }}''{{ @LANG187 }}" class="deleter tooltipped"><i class="material-icons">delete</i></a>
+                                </td>
+                            </tr>
+                        </repeat>
+                        </tbody>
+                    </table>
+                </true>
+                <false>
+                    <p><strong>{{ @USER_COUNTR }} {{ @LANG164 }}</strong>&#160;|&#160;<a href="{{ @CONSTRUCTR_BASE_URL}}/constructr/usermanagement/new" class="waves-effect waves-light">{{ @LANG165 }} +</a></p>
+                </false>
+            </check>
+        </div>
+    </div>
+	<script src="{{ @CONSTRUCTR_BASE_URL}}/protected/assets/js/constructr_js_merged.min.js"></script>
+    <script>
+        $(function(){
+            $(".button-collapse").sideNav();
+            $('.users').dblclick(function(){
+				var INFO=$(this).attr('id');
+				INFO=INFO.split('@@@');
+            	var USER_ID=INFO[1];
+            	window.location='{{ @CONSTRUCTR_BASE_URL}}/constructr/usermanagement/edit/'+USER_ID;
+            });
+            $('.deleter').click(function(e) {
+				e.preventDefault();
+	            var U=$(this).attr('href');
+	            vex.dialog.buttons.YES.text='{{ @LANGG0 }}';
+	            vex.dialog.buttons.NO.text='{{ @LANGG1 }}';
+	            vex.dialog.confirm({
+	                className:'vex-theme-wireframe',
+	                message:'<h5>{{ @LANGG3 }}:</h5>{{ @LANG189 }}',
+	                callback:function(value){
+	                    if(value==true){
+	                        $(location).attr('href',U);
+	                    } else {
+	                        return false;
+	                    }
+	                }
+	            });
+            });
+            $(document).keyup(function(e){
+			    if (e.which===27) javascript:history.back();
+			});
+            function autoBlinder(){
+                $('.card-panel').fadeOut();
+            }
+            setInterval(autoBlinder,4500);
+        });
+    </script>
+</body>
+</html>

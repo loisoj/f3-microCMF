@@ -1,1 +1,58 @@
 f3-microCMF
+
+{{@ CONSTRUCTR_BASE_URL @}}
+	The BaseUrl of ConstructrCMS for internal link-building.
+
+{{@ PAGE_ID @}}
+	The ID (constructr_pages / constructr_pages_id) of actual page.
+
+{{@ PAGE_TEMPLATE @}}
+	The template-file (ROOT/THEMES/) of actual page.
+
+{{@ PAGE_NAME @}}
+	Name of actual page.
+
+{{@ PAGE_CONTENT_RAW @}}
+	Markdown content of actual page.
+
+{{@ PAGE_CONTENT_HTML @}}
+	HTML content of actual page.
+
+{{@ PAGE_CSS @}}
+	Additional CSS of actual page (corresponding input value of page-creation-form).
+
+{{@ PAGE_JS @}}
+	Additional JS of actual page (corresponding input value of page-creation-form).
+
+{{@ PAGE_NAVIGATION_UL_LI @}}
+	The HTML for an unordered list menu.
+
+{{@ PAGE_NAVIGATION_UL_LI_CLASSES( CLASS_FIRST_UL, CLASS_FOLLOWING_UL, CLASS_INACTIVE_LI, CLASS_ACTIVE_LI ) @}}
+	The HTML for an unordered list menu with corresponding classes for ul- and li-elements.
+
+{{@ CONSTRUCTR_PAGE_TITLE @}}
+	MetaTitle of actual page.
+
+{{@ CONSTRUCTR_PAGE_KEYWORDS @}}
+	MetaKeywords of actual page.
+
+{{@ CONSTRUCTR_PAGE_DESCRIPTION @}}
+	MetaDescription of actual page.
+
+{{@ CONSTRUCTR_LINK(PAGE_ID) @}}
+	Print a Link to a specific Page (integer PageID)
+
+{{@ CONSTRUCTR_MAPPING(LEFT_CONTENT) @}}
+	The content-element mapped to the corresponding placeholder (LEFT_CONTENT).
+
+{{@ FIRST_LEVEL_NAV @}}
+	The HTML for an unordered list menu for all first-level-pages.
+
+{{@ SECOND_LEVEL_NAV @}}
+	The HTML for an unordered list menu for all second-level-pages.
+
+{{@ THIRD_LEVEL_NAV @}}
+	The HTML for an unordered list menu for all third-level-pages.
+
+{{@ SUBNAV_PAGE @}}
+	The HTML for an unordered list menu for all sub-pages of actual page.

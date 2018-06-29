@@ -3,7 +3,7 @@
     session_start();
 
     $APP=require_once __DIR__.'/vendor/base.php';
-    $CONSTRUCTR_CONFIG=file_get_contents(__DIR__.'/constructr-cms/CONFIG/constructr_config.json');
+    @$CONSTRUCTR_CONFIG=file_get_contents(__DIR__.'/protected/CONFIG/constructr_config.json');
     $CONSTRUCTR_CONFIG=json_decode($CONSTRUCTR_CONFIG, true);
 
     $APP->set('DATABASE_HOSTNAME',$CONSTRUCTR_CONFIG['DATABASE_HOSTNAME']);
@@ -17,11 +17,11 @@
     $APP->set('CONSTRUCTR_BASE_URL',$CONSTRUCTR_CONFIG['CONSTRUCTR_BASE_URL']);
     $APP->set('CONSTRUCTR_REPLACE_BASE_URL',$CONSTRUCTR_CONFIG['CONSTRUCTR_REPLACE_BASE_URL']);
     $APP->set('ENCODING','utf-8');
-    $APP->set('AUTOLOAD','constructr-cms/CONTROLLER/');
-    $APP->set('CONSTRUCTR_LOG', $CONSTRUCTR_LOG=new \Log('constructr-cms/LOGFILES/'.date('Y-m-d').'-constructr.txt'));
-    $APP->set('CONSTRUCTR_FE_CACHE', __DIR__.'/constructr-cms/CACHE/');
+    $APP->set('AUTOLOAD','protected/CONTROLLER/');
+    $APP->set('CONSTRUCTR_LOG', $CONSTRUCTR_LOG=new \Log('protected/LOGFILES/'.date('Y-m-d').'-constructr.txt'));
+    $APP->set('CONSTRUCTR_FE_CACHE', __DIR__.'/protected/CACHE/');
 	$APP->set('CONSTRUCTR_BE_CACHE', __DIR__.'/tmp');
-    $APP->set('TEMPLATES',$APP->get('CONSTRUCTR_BASE_URL').'/THEMES/');
+    $APP->set('TEMPLATES',$APP->get('CONSTRUCTR_BASE_URL').'/themes/');
 
 	$APP->set('CONSTRUCTR_DEACTIVATE_BACKEND',false); // (bool) // true || false // Standard: false
     $APP->set('MAX_ERROR_LOGIN',5); // (integer) // Standard: 5
@@ -257,10 +257,10 @@
                     $TEMPLATE=str_ireplace($remove,'',$TEMPLATE);
                 }
 
-                $TEMPLATE.="\n<!-- ConstructrCMS | OutputCompression is active -->";
+    
             }
 
-            $TEMPLATE.="\n<!-- ConstructrCMS | http://phaziz.com | http://constructr-cms.org -->";
+
 
             if($APP->get('CONSTRUCTR_CACHE')==true){@file_put_contents($UNIQUE=$APP->get('CONSTRUCTR_FE_CACHE').md5($REQUEST).'.html',$TEMPLATE."\n".'<!-- ConstructrCMS | cached file '.date('Y-m-d H:i:s').' -->');}
 
@@ -275,7 +275,7 @@
 			die('Constructr Backend deactivated...');
 		}
 
-		require_once __DIR__.'/constructr-cms/LANG/'.$APP->get('CONSTRUCTR_BACKEND_LANGUAGE').'.php';
+		require_once __DIR__.'/protected/LANG/'.$APP->get('CONSTRUCTR_BACKEND_LANGUAGE').'.php';
 
 		foreach($CONSTRUCTR_LANG as $KEY => $SLANG){
 			$APP->set('LANG'.$KEY,$SLANG);
@@ -286,13 +286,13 @@
             $APP->set('COOKIE.username','');
         }
 
-        $APP->set('NAVIGATION','./constructr-cms/TEMPLATES/constructr_navigation.html');
+        $APP->set('NAVIGATION','./protected/TEMPLATES/constructr_navigation.html');
         $APP->set('DEBUG',3);
         $APP->set('CACHE',true);
-        $APP->set('UPLOADS',__DIR__.'/UPLOADS/');
+        $APP->set('uploads',__DIR__.'/uploads/');
 
-        require_once __DIR__.'/constructr-cms/USER_RIGHTS/user_rights.php';
-        require_once __DIR__.'/constructr-cms/ROUTES/constructr_routes.php';
+        require_once __DIR__.'/protected/USER_RIGHTS/user_rights.php';
+        require_once __DIR__.'/protected/ROUTES/constructr_routes.php';
 
         $APP->set('ALL_CONSTRUCTR_USER_RIGHTS',$CONSTRUCTR_USER_RIGHTS);
     }
