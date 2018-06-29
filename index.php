@@ -3,7 +3,7 @@
     session_start();
 
     $APP=require_once __DIR__.'/vendor/base.php';
-    $CONSTRUCTR_CONFIG=file_get_contents(__DIR__.'/CONSTRUCTR-CMS/CONFIG/constructr_config.json');
+    $CONSTRUCTR_CONFIG=file_get_contents(__DIR__.'/constructr-cms/CONFIG/constructr_config.json');
     $CONSTRUCTR_CONFIG=json_decode($CONSTRUCTR_CONFIG, true);
 
     $APP->set('DATABASE_HOSTNAME',$CONSTRUCTR_CONFIG['DATABASE_HOSTNAME']);
@@ -17,9 +17,9 @@
     $APP->set('CONSTRUCTR_BASE_URL',$CONSTRUCTR_CONFIG['CONSTRUCTR_BASE_URL']);
     $APP->set('CONSTRUCTR_REPLACE_BASE_URL',$CONSTRUCTR_CONFIG['CONSTRUCTR_REPLACE_BASE_URL']);
     $APP->set('ENCODING','utf-8');
-    $APP->set('AUTOLOAD','CONSTRUCTR-CMS/CONTROLLER/');
-    $APP->set('CONSTRUCTR_LOG', $CONSTRUCTR_LOG=new \Log('CONSTRUCTR-CMS/LOGFILES/'.date('Y-m-d').'-constructr.txt'));
-    $APP->set('CONSTRUCTR_FE_CACHE', __DIR__.'/CONSTRUCTR-CMS/CACHE/');
+    $APP->set('AUTOLOAD','constructr-cms/CONTROLLER/');
+    $APP->set('CONSTRUCTR_LOG', $CONSTRUCTR_LOG=new \Log('constructr-cms/LOGFILES/'.date('Y-m-d').'-constructr.txt'));
+    $APP->set('CONSTRUCTR_FE_CACHE', __DIR__.'/constructr-cms/CACHE/');
 	$APP->set('CONSTRUCTR_BE_CACHE', __DIR__.'/tmp');
     $APP->set('TEMPLATES',$APP->get('CONSTRUCTR_BASE_URL').'/THEMES/');
 
@@ -275,7 +275,7 @@
 			die('Constructr Backend deactivated...');
 		}
 
-		require_once __DIR__.'/CONSTRUCTR-CMS/LANG/'.$APP->get('CONSTRUCTR_BACKEND_LANGUAGE').'.php';
+		require_once __DIR__.'/constructr-cms/LANG/'.$APP->get('CONSTRUCTR_BACKEND_LANGUAGE').'.php';
 
 		foreach($CONSTRUCTR_LANG as $KEY => $SLANG){
 			$APP->set('LANG'.$KEY,$SLANG);
@@ -286,13 +286,13 @@
             $APP->set('COOKIE.username','');
         }
 
-        $APP->set('NAVIGATION','./CONSTRUCTR-CMS/TEMPLATES/constructr_navigation.html');
+        $APP->set('NAVIGATION','./constructr-cms/TEMPLATES/constructr_navigation.html');
         $APP->set('DEBUG',3);
         $APP->set('CACHE',true);
         $APP->set('UPLOADS',__DIR__.'/UPLOADS/');
 
-        require_once __DIR__.'/CONSTRUCTR-CMS/USER_RIGHTS/user_rights.php';
-        require_once __DIR__.'/CONSTRUCTR-CMS/ROUTES/constructr_routes.php';
+        require_once __DIR__.'/constructr-cms/USER_RIGHTS/user_rights.php';
+        require_once __DIR__.'/constructr-cms/ROUTES/constructr_routes.php';
 
         $APP->set('ALL_CONSTRUCTR_USER_RIGHTS',$CONSTRUCTR_USER_RIGHTS);
     }
