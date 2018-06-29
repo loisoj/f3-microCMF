@@ -1,13 +1,3 @@
-
-
-
-============================================================
-Use this ConstructrSmartTag's in your Template's and Theme's
-============================================================
-                  VERSION 3.1 / 2018-02-15
-============================================================
-
-
 {{@ CONSTRUCTR_BASE_URL @}}
 	The BaseUrl of ConstructrCMS for internal link-building.
 
@@ -51,7 +41,7 @@ Use this ConstructrSmartTag's in your Template's and Theme's
 	Print a Link to a specific Page (integer PageID)
 
 {{@ CONSTRUCTR_MAPPING(LEFT_CONTENT) @}}
-	The content-element mapped to the corresponding placeholder (LEFT_CONTENT). 
+	The content-element mapped to the corresponding placeholder (LEFT_CONTENT).
 
 {{@ FIRST_LEVEL_NAV @}}
 	The HTML for an unordered list menu for all first-level-pages.
