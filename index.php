@@ -37,7 +37,7 @@
     try{
         $APP->set('DBCON',$DBCON=new DB\SQL('mysql:host='.$APP->get('DATABASE_HOSTNAME').';port='.$APP->get('DATABASE_PORT').';dbname='.$APP->get('DATABASE_DATABASE'),$APP->get('DATABASE_USERNAME'),$APP->get('DATABASE_PASSWORD')));
     }catch(PDOException $e){
-        echo 'Setup ConstructrCMS <a href="'.((empty($_SERVER['HTTPS']))?'http://':'https://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'CONSTRUCTR-CMS-SETUP/">here</a>';
+        echo 'Для установки нажмите <a href="'.((empty($_SERVER['HTTPS']))?'http://':'https://').$_SERVER['HTTP_HOST'].'/install/">сюда</a>';
         die();
     }
 
@@ -257,7 +257,7 @@
                     $TEMPLATE=str_ireplace($remove,'',$TEMPLATE);
                 }
 
-    
+
             }
 
 
